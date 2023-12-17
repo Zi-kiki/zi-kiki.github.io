@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>横屏提示示例</title>
+    <script>
+                // 获取用户的屏幕方向
+        var orientation = window.screen.orientation || window.screen.mozOrientation || window.screen.msOrientation;
+
+        // 定义一个函数，检测用户是否是手机浏览器
+        function isMobile() {
+        // 获取用户的设备信息
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        // 判断是否包含手机浏览器的关键字
+        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+        }
+
+        // 定义一个函数，显示横屏提示
+        function showLandscapeTip() {
+        // 创建一个div元素，作为横屏提示的容器
+        var tipDiv = document.createElement("div");
+        // 设置div的样式，使其覆盖整个屏幕，居中显示，背景为灰色，字体为白色
+        tipDiv.style.position = "fixed";
+        tipDiv.style.top = "0";
+        tipDiv.style.left = "0";
+        tipDiv.style.width = "100%";
+        tipDiv.style.height = "100%";
+        tipDiv.style.display = "flex";
+        tipDiv.style.alignItems = "center";
+        tipDiv.style.justifyContent = "center";
+        tipDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        tipDiv.style.color = "white";
+        tipDiv.style.zIndex = "9999";
+        // 设置div的内容，提示用户需要横屏以正常显示网页
+        tipDiv.innerHTML = "请将手机横屏以正常显示网页";
+        // 将div添加到文档的body中
+        document.body.appendChild(tipDiv);
+        }
+
+        // 定义一个函数，隐藏横屏提示
+        function hideLandscapeTip() {
+        // 获取横屏提示的div元素
+        var tipDiv = document.querySelector("div");
+        // 如果存在，就将其从文档的body中移除
+        if (tipDiv) {
+            document.body.removeChild(tipDiv);
+        }
+        }
+
+        // 定义一个函数，检测用户的屏幕方向，并根据情况显示或隐藏横屏提示，或者刷新网页并跳转到另一个html
+        function checkOrientation() {
+        // 如果用户是手机浏览器
+        if (isMobile()) {
+            // 如果用户的屏幕方向是竖屏
+            if (orientation.type === "portrait-primary" || orientation.type === "portrait-secondary") {
+            // 显示横屏提示
+            showLandscapeTip();
+            }
+            // 如果用户的屏幕方向是横屏
+            else if (orientation.type === "landscape-primary" || orientation.type === "landscape-secondary") {
+            // 隐藏横屏提示
+            hideLandscapeTip();
+            // 刷新网页并跳转到另一个html
+            window.location.href = "another.html";
+            }
+        }
+        }
+
+        // 当文档加载完成时，调用checkOrientation函数
+        window.addEventListener("load", checkOrientation);
+
+        // 当用户的屏幕方向发生变化时，调用checkOrientation函数
+        window.addEventListener("orientationchange", checkOrientation);
+
+    </script>
+</head>
+<body>
+    <!-- 这里是你的网页内容 -->
+    <h1>欢迎访问我的网站</h1>
+    <p>这是一个横屏提示示例</p>
+</body>
+</html>
