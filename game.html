@@ -1,134 +1,135 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <style>
-		body {
-			background-image: url("./images/tree-background.png");
-			background-size: cover;
-			background-repeat: no-repeat;
-		}
-    #hint {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 100px;
-      color: rgb(255, 255, 255);
-      opacity: 0.2;
-			font-family: 'Christmas', sans-serif;
-    }
-    #letters {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      font-size: 20px;
-    }
-    .letter {
-      display: inline-block;
-      margin: 10px;
-      cursor: pointer;
-			font-family: 'Christmas', sans-serif;
-    }
-    .found {
-      color: yellow;
-			font-size: 100px;
-			font-family: 'Christmas', sans-serif;
-    }
-    .hidden {
-      visibility: hidden;
-    }
+  <head>
+    <style>
+      body {
+        background-image: url("./images/tree-background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      #hint {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 100px;
+        color: rgb(255, 255, 255);
+        opacity: 0.2;
+        font-family: 'Christmas', sans-serif;
+      }
+      #letters {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-size: 20px;
+      }
+      .letter {
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+        font-family: 'Christmas', sans-serif;
+      }
+      .found {
+        color: yellow;
+        font-size: 100px;
+        font-family: 'Christmas', sans-serif;
+      }
+      .hidden {
+        visibility: hidden;
+      }
 
-		@font-face {
-			font-family: "Christmas";
-			src: url("./font/CHRISTMAS_HUGS.ttf");
-		}
-  </style>
-</head>
-<body>
-  <div id="hint">CHRISTMAS</div>
-  <div id="letters">
-    <div class="letter" data-value="C" style="font-size: 30px;">C</div>
-    <div class="letter" data-value="H" style="font-size: 26px;">H</div>
-    <div class="letter" data-value="R" style="font-size: 42px;">R</div>
-    <div class="letter" data-value="I" style="font-size: 36px;">I</div>
-    <div class="letter" data-value="S" style="font-size: 30px;">S</div>
-    <div class="letter" data-value="T" style="font-size: 29px;">T</div>
-    <div class="letter" data-value="M" style="font-size: 35px;">M</div>
-    <div class="letter" data-value="A" style="font-size: 40px;">A</div>
-    <div class="letter" data-value="S" style="font-size: 44px;">S</div>
-  </div>
-  <script>
-    // Shuffle the letters
-    let letters = document.getElementById("letters");
-    for (let i = letters.children.length; i >= 0; i--) {
-      letters.appendChild(letters.children[Math.random() * i | 0]);
-    }
+      @font-face {
+        font-family: "Christmas";
+        src: url("./font/CHRISTMAS_HUGS.ttf");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hint">CHRISTMAS</div>
+    <div id="letters">
+      <div class="letter" data-value="C" style="font-size: 30px;">C</div>
+      <div class="letter" data-value="H" style="font-size: 26px;">H</div>
+      <div class="letter" data-value="R" style="font-size: 42px;">R</div>
+      <div class="letter" data-value="I" style="font-size: 36px;">I</div>
+      <div class="letter" data-value="S" style="font-size: 30px;">S</div>
+      <div class="letter" data-value="T" style="font-size: 29px;">T</div>
+      <div class="letter" data-value="M" style="font-size: 35px;">M</div>
+      <div class="letter" data-value="A" style="font-size: 40px;">A</div>
+      <div class="letter" data-value="S" style="font-size: 44px;">S</div>
+    </div>
+    <script>
+      // Shuffle the letters
+      let letters = document.getElementById("letters");
+      for (let i = letters.children.length; i >= 0; i--) {
+        letters.appendChild(letters.children[Math.random() * i | 0]);
+      }
 
-    // Randomize the positions of the letters in the left half of the screen
-    let width = window.innerWidth / 2;
-    let height = window.innerHeight;
-    let margin = 50; // The minimum distance between the letters and the hint element
-    let hintRect = document.getElementById("hint").getBoundingClientRect(); // The bounding rectangle of the hint element
-    for (let letter of letters.children) {
-      letter.style.position = "absolute";
-      // Generate a random position that does not overlap with the hint element or the screen edge
-      let x, y;
-      do {
-        x = Math.random() * (width - margin * 2) + margin;
-        y = Math.random() * (height - margin * 2) + margin;
-      } while (x > hintRect.left - margin && x < hintRect.right + margin && y > hintRect.top - margin && y < hintRect.bottom + margin);
-      letter.style.left = x + "px";
-      letter.style.top = y + "px";
-      // Randomize the font size of the letter between 15 and 40
-      let fontSize = Math.random() * (40 - 15) + 15;
-      letter.style.fontSize = fontSize + "px";
-      // Randomize the color of the letter
-      let color = "rgb(" + Math.random() * 255 + "," + Math.random() * 255 + "," + Math.random() * 255 + ")";
-      letter.style.color = color;
-    }
+      // Randomize the positions of the letters in the left half of the screen
+      let width = window.innerWidth / 2;
+      let height = window.innerHeight;
+      let margin = 50; // The minimum distance between the letters and the hint element
+      let hintRect = document.getElementById("hint").getBoundingClientRect(); // The bounding rectangle of the hint element
+      for (let letter of letters.children) {
+        letter.style.position = "absolute";
+        // Generate a random position that does not overlap with the hint element or the screen edge
+        let x, y;
+        do {
+          x = Math.random() * (width - margin * 2) + margin;
+          y = Math.random() * (height - margin * 2) + margin;
+        } while (x > hintRect.left - margin && x < hintRect.right + margin && y > hintRect.top - margin && y < hintRect.bottom + margin);
+        letter.style.left = x + "px";
+        letter.style.top = y + "px";
+        // Randomize the font size of the letter between 15 and 40
+        let fontSize = Math.random() * (40 - 15) + 15;
+        letter.style.fontSize = fontSize + "px";
+        // Randomize the color of the letter
+        let color = "rgb(" + Math.random() * 255 + "," + Math.random() * 255 + "," + Math.random() * 255 + ")";
+        letter.style.color = color;
+      }
 
-    // Add click event listener to each letter
-    let hint = document.getElementById("hint");
-    let hintLetters = hint.textContent.split("");
-    let foundLetters = 0;
-    for (let letter of letters.children) {
-      letter.addEventListener("click", function() {
-        // Get the value and index of the clicked letter
-        let value = letter.dataset.value;
-        let index = hintLetters.indexOf(value);
-        // If the letter is not found yet, move it to the hint element
-        if (index !== -1) {
-          // Calculate the position of the hint letter
-          let hintLetter = hint.children[index];
-          let rect = hintLetter.getBoundingClientRect();
-          let x = rect.left + window.scrollX;
-          let y = rect.top + window.scrollY;
-          // Animate the letter to the hint position
-          letter.classList.add("found");
-          letter.style.transition = "all 1s";
-          letter.style.left = x -20 + "px";
-          letter.style.top = y -20 + "px";
-					letter.style.fontSize = "100px"
-					letter.style.color = "gold"
-										// Add the letter to the found letters array
-          // Remove the letter from the hint letters array
-          hintLetters[index] = "";
-          // Increase the found letters count
-          foundLetters++;
-          // Check if the game is over
-          if (foundLetters === hint.textContent.length) {
-            alert("游戏结束，你找到了所有的字母！");
+      // Add click event listener to each letter
+      let hint = document.getElementById("hint");
+      let hintLetters = hint.textContent.split("");
+      let foundLetters = 0;
+      for (let letter of letters.children) {
+        letter.addEventListener("click", function() {
+          // Get the value and index of the clicked letter
+          let value = letter.dataset.value;
+          let index = hintLetters.indexOf(value);
+          // If the letter is not found yet, move it to the hint element
+          if (index !== -1) {
+            // Calculate the position of the hint letter
+            let hintLetter = hint.children[index];
+            let rect = hintLetter.getBoundingClientRect();
+            let x = rect.left + window.scrollX;
+            let y = rect.top + window.scrollY;
+            // Animate the letter to the hint position
+            letter.classList.add("found");
+            letter.style.transition = "all 1s";
+            letter.style.left = x -20 + "px";
+            letter.style.top = y -20 + "px";
+            letter.style.fontSize = "100px"
+            letter.style.color = "gold"
+                      // Add the letter to the found letters array
+            // Remove the letter from the hint letters array
+            hintLetters[index] = "";
+            // Increase the found letters count
+            foundLetters++;
+            // Check if the game is over
+            if (foundLetters === hint.textContent.length) {
+              alert("游戏结束，你找到了所有的字母！");
+            }
           }
-        }
-      });
-    }
+        });
+      }
 
-    // Create span elements for each hint letter
-    hint.textContent = "";
-    for (let letter of hintLetters) {
-      let span = document.createElement("span");
-      span.textContent = letter;
-      hint.appendChild(span);
-    }
-  </script>
-</body>
+      // Create span elements for each hint letter
+      hint.textContent = "";
+      for (let letter of hintLetters) {
+        let span = document.createElement("span");
+        span.textContent = letter;
+        hint.appendChild(span);
+      }
+    </script>
+  </body>
 </html>
