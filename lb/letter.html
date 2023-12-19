@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>过渡动画示例</title>
+    <style>
+        /* 设置要重定向的元素的样式 */
+        .redirect {
+            width: 200px;
+            height: 200px;
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            line-height: 200px;
+            margin: 100px auto;
+            cursor: pointer;
+        }
+        /* 设置动画效果的关键帧 */
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        /* 设置动画效果的属性和时长 */
+        .redirect {
+            animation: slide 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 这里是要重定向的元素 -->
+    <div class="redirect" id="redirect">点击我跳转</div>
+		<script>
+			
+			function rect_to_letter() {
+        // 获取要重定向的元素
+        var redirect = document.getElementById("redirect");
+        // 为元素添加一个点击事件
+        redirect.onclick = function() {
+            // 使用history API改变页面状态
+            history.pushState(null, null, "./game.html");
+            // 监听页面状态的变化
+            window.onpopstate = function() {
+                // 跳转到另一个html
+                window.location.href = "./game.html";
+            };
+        };
+			};
+			window.onload = rect_to_letter();
+			window.addEventListener("popstate", function() {
+				// 跳转到另一个html
+				window.location.href = "./game.html";
+		});
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .envelope{
+            width: 100%;
+        }
+          /* 定义动画的关键帧 */
+          p {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            color: rgb(104, 104, 104);
+            font-size: 24px;
+            text-align: left;
+          }
+
+        @keyframes typing {
+            from {
+            width: 0;
+            
+            }
+            to {
+            width: 100%;
+            
+            }
+        }
+        
+        /* 定义动画的名称、持续时间、重复次数等 */
+        .text {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid black;
+            animation: typing 8s steps(120, end);
+        }
+        .avatar {
+            position: absolute;
+            left: -1px;
+            top: 15px;
+                   }
+    </style>
+</head>
+<body>
+    <img class ='envelope' id="letter" src="pics\envelope.gif" height="650" style="object-fit: cover;">
+    <p class="" id ='one' style="font-size: 35px; top:20px; left: 200px;"></p>
+    <p class="" id='two' style="top: 100px; left: 250px;"></p>
+    <p class="" id='three' style="top: 150px; left: 250px;"></p>
+    <p class="" id='four' style="top: 200px; left: 250px;"></p>
+    <p class="" id='five' style="top: 250px; left: 250px;"></p>
+
+    <p class="" id='end' style="top: 300px; left: 800px;"></p>
+    <p class="" id='time' style="top: 350px; left: 800px;"></p>
+    <img class='disappear' id="picture"  width="200px" height="200px">
+
+
+
+    <script>
+        let img = document.getElementById("letter");
+        let photo = document.getElementById("picture");
+
+        let newsrc = "pics/backeground.jpg";
+        let newsrc2 = "avatar/语文.png";
+
+        function changesrc() {
+            img.src = newsrc;
+            photo.src = newsrc2;
+            photo.className = "avatar";
+        }
+
+        window.onload = function() {
+            setTimeout(changesrc, 4050)
+        }
+
+        function load_text() {
+            let text = document.getElementById("one");
+            let len_1 = "To 刘老师 ";
+            let len_2 = "圣诞节快乐！";
+            let len_3 ="祝刘老师越来越美，越来越开心，";
+            let len_4 = "架子鼓打的越来越好，";
+            let len_5 = "好运滚滚来！";
+
+            let len_end = "2324全体同学";
+            let len_time = "2023.12.24";
+            /*须填写*/
+
+            function clear_1() {
+                document.getElementById("one").className = ""
+        }
+
+            function clear_2() {
+                document.getElementById("two").className = ""
+            }
+            function clear_3() {
+                document.getElementById("three").className = ""
+            }
+            function clear_4() {
+                document.getElementById("four").className = ""
+            }
+            function clear_5() {
+                document.getElementById("five").className = ""
+            }
+
+
+            function clear_end() {
+                document.getElementById("end").className = ""
+            }
+            function clear_time() {
+                document.getElementById("time").className = ""
+            }
+
+
+            function text_1(){
+                document.getElementById("one").innerHTML = len_1
+                document.getElementById("one").className = "text"
+            }
+            function text_2() {
+                document.getElementById("two").innerHTML = len_2
+                document.getElementById("two").className = "text"
+            }
+           function text_3() {
+                
+                document.getElementById("three").innerHTML = len_3
+                document.getElementById("three").className = "text"
+            }
+            function text_4() {
+                document.getElementById("four").innerHTML = len_4
+                document.getElementById("four").className = "text"
+            }
+            function text_5() {
+                document.getElementById("five").innerHTML = len_5
+                document.getElementById("five").className = "text"
+            }
+
+            function text_end() {
+                document.getElementById("end").innerHTML = len_end
+                document.getElementById("end").className = "text"
+            }
+            function text_time() {
+                document.getElementById("time").innerHTML = len_time
+                document.getElementById("time").className = "text"   
+            }
+
+            /*须填写*/
+
+            /*字体出现时间 比光标消失迟500*/
+            setTimeout(text_1, 4000)
+            setTimeout(text_2, 5750)
+            setTimeout(text_3, 7250)
+            setTimeout(text_4, 10525)
+            setTimeout(text_5, 13000)
+
+            setTimeout(text_end, 15500)
+            setTimeout(text_time, 16500)
+
+            /*光标消失时间   1个字=250ms*/
+            setTimeout(clear_1, 5250)
+            setTimeout(clear_2, 6750)
+            setTimeout(clear_3, 10025)
+            setTimeout(clear_4, 12500)
+            setTimeout(clear_5, 14500)
+
+            setTimeout(clear_end, 16000)
+            setTimeout(clear_time, 17500)
+        }
+
+            
+         setTimeout(load_text, 1000)
+         
+    </script>
+</body>
