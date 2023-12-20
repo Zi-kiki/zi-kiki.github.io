@@ -1,62 +1,179 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>过渡动画示例</title>
+<meta charset="UTF-8">
+    <title>圣诞节快乐</title>
     <style>
-        /* 设置要重定向的元素的样式 */
-        .redirect {
-            width: 200px;
-            height: 200px;
-            background-color: #333;
-            color: #fff;
-            font-weight: bold;
-            font-size: 20px;
-            text-align: center;
-            line-height: 200px;
-            margin: 100px auto;
-            cursor: pointer;
+        .envelope{
+            width: 100%;
         }
-        /* 设置动画效果的关键帧 */
-        @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+        
+          /* 定义动画的关键帧 */
+        p {
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        color: rgb(104, 104, 104);
+        font-size: 24px;
+        text-align: left;
         }
-        /* 设置动画效果的属性和时长 */
-        .redirect {
-            animation: slide 2s forwards;
+        
+        @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+        }
+        
+        /* 定义动画的名称、持续时间、重复次数等 */
+        .text {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid black;
+        animation: typing 8s steps(120, end) forwards; /* 添加 animation-fill-mode: forwards */
+        }
+
+        .avatar {
+        position: absolute;
+        left: -1px;
+        top: 15px;
+        }
+
+        body {
+        background-color: #c7baa4;
         }
     </style>
 </head>
 <body>
-    <!-- 这里是要重定向的元素 -->
-    <div class="redirect" id="redirect">点击我跳转</div>
-		<script>
-			
-			function rect_to_letter() {
-        // 获取要重定向的元素
-        var redirect = document.getElementById("redirect");
-        // 为元素添加一个点击事件
-        redirect.onclick = function() {
-            // 使用history API改变页面状态
-            history.pushState(null, null, "./game.html");
-            // 监听页面状态的变化
-            window.onpopstate = function() {
-                // 跳转到另一个html
-                window.location.href = "./game.html";
-            };
-        };
-			};
-			window.onload = rect_to_letter();
-			window.addEventListener("popstate", function() {
-				// 跳转到另一个html
-				window.location.href = "./game.html";
-		});
+    <img class ='envelope' id="letter" src="pics\envelope.gif" height="650" style="object-fit: cover;" onload="changesrc()">
+    <p class="" id ='one' style="font-size: 35px; top:20px; left: 200px;"></p>
+    <p class="" id='two' style="top: 100px; left: 250px;"></p>
+    <p class="" id='three' style="top: 150px; left: 250px;"></p>
+    <p class="" id='four' style="top: 200px; left: 250px;"></p>
+    <p class="" id='five' style="top: 250px; left: 250px;"></p>
+
+    <p class="" id='end' style="top: 300px; left: 800px;"></p>
+    <p class="" id='time' style="top: 350px; left: 800px;"></p>
+    <img class='disappear' id="picture"  width="200px" height="200px">
+
+
+
+    <script>
+        var loaded = 0
+        let img = document.getElementById("letter");
+        let photo = document.getElementById("picture");
+
+        let newsrc = "pics/backeground.jpg";
+        let newsrc2 = "avatar/数学.png";
+
+        function changesrc() {
+            setTimeout(function() {
+                img.src = newsrc;
+                photo.src = newsrc2;
+                photo.className = "avatar";
+            }, 4400)
+            if (loaded === 0) {
+            setTimeout(load_text, 1000)
+            loaded = 1
+            }
+
+        }
+
+        function load_text() {
+            let text = document.getElementById("one");
+            let len_1 = "To 赵老师 ";
+            let len_2 = "圣诞节快乐！";
+            let len_3 ="虽然数学不简单，但相信在您的带领下，";
+            let len_4 = "我们的成绩会越来越优秀";
+            let len_5 = "最后祝你天天开心，越来越美丽哦！";
+
+            let len_end = "2324全体同学";
+            let len_time = "2023.12.24";
+            /*须填写*/
+
+            function clear_1() {
+                document.getElementById("one").className = ""
+        }
+
+            function clear_2() {
+                document.getElementById("two").className = ""
+            }
+            function clear_3() {
+                document.getElementById("three").className = ""
+            }
+            function clear_4() {
+                document.getElementById("four").className = ""
+            }
+            function clear_5() {
+                document.getElementById("five").className = ""
+            }
+
+
+            function clear_end() {
+                document.getElementById("end").className = ""
+            }
+            function clear_time() {
+                document.getElementById("time").className = ""
+            }
+
+
+            function text_1(){
+                document.getElementById("one").innerHTML = len_1
+                document.getElementById("one").className = "text"
+            }
+            function text_2() {
+                document.getElementById("two").innerHTML = len_2
+                document.getElementById("two").className = "text"
+            }
+           function text_3() {
+                
+                document.getElementById("three").innerHTML = len_3
+                document.getElementById("three").className = "text"
+            }
+            function text_4() {
+                document.getElementById("four").innerHTML = len_4
+                document.getElementById("four").className = "text"
+            }
+            function text_5() {
+                document.getElementById("five").innerHTML = len_5
+                document.getElementById("five").className = "text"
+            }
+
+            function text_end() {
+                document.getElementById("end").innerHTML = len_end
+                document.getElementById("end").className = "text"
+            }
+            function text_time() {
+                document.getElementById("time").innerHTML = len_time
+                document.getElementById("time").className = "text"   
+            }
+
+            /*须填写*/
+
+            /*字体出现时间 比光标消失迟500*/
+            setTimeout(text_1, 4000)
+            setTimeout(text_2, 5750)
+            setTimeout(text_3, 7250)
+            setTimeout(text_4, 10525)
+            setTimeout(text_5, 13000)
+
+            setTimeout(text_end, 15500)
+            setTimeout(text_time, 16500)
+
+            /*光标消失时间   1个字=250ms*/
+            setTimeout(clear_1, 5250)
+            setTimeout(clear_2, 6750)
+            setTimeout(clear_3, 10025)
+            setTimeout(clear_4, 12500)
+            setTimeout(clear_5, 15000)
+
+            setTimeout(clear_end, 16000)
+            setTimeout(clear_time, 17500)
+        }
+         
     </script>
 </body>
 </html>

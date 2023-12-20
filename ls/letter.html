@@ -38,6 +38,10 @@
             left: -1px;
             top: 15px;
                    }
+
+        body {
+            background-color: #c7baa4;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +73,7 @@
 
         window.onload = function() {
             setTimeout(changesrc, 4050)
+            setTimeout(load_text, 4050)
         }
 
         function load_text() {
@@ -163,8 +168,10 @@
             setTimeout(clear_time, 17500)
         }
 
+        window.onload = function() {
+            setTimeout(changesrc, 4200)
+            setTimeout(load_text, 1000)
+        }
             
-         setTimeout(load_text, 1000)
-         
     </script>
 </body>

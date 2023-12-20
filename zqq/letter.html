@@ -38,6 +38,10 @@
             left: -1px;
             top: 15px;
                    }
+
+        body {
+        background-color: #c7baa4;
+        }
     </style>
 </head>
 <body>
@@ -65,10 +69,6 @@
             img.src = newsrc;
             photo.src = newsrc2;
             photo.className = "avatar";
-        }
-
-        window.onload = function() {
-            setTimeout(changesrc, 4050)
         }
 
         function load_text() {
@@ -164,7 +164,10 @@
         }
 
             
-         setTimeout(load_text, 1000)
+        window.onload = function() {
+            setTimeout(changesrc, 4200)
+            setTimeout(load_text, 1000)
+        }
          
     </script>
 </body>
