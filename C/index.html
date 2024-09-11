@@ -20,13 +20,40 @@
             width: 100%;
             height: 100%;
         }
+        #downloadButton {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #downloadButton:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <video id="videoPlayer" controls>
-        <source src="video.mp4" type="video/mp4">
+        <source src="./video.mp4" type="video/mp4">
     </video>
+    <button id="downloadButton" onclick="downloadVideo()">下载视频</button>
     <script>
+        document.getElementById('videoPlayer').addEventListener('canplay', function() {
+            this.play();
+        });
+
+        function downloadVideo() {
+            const link = document.createElement('a');
+            link.href = './video.mp4';
+            link.download = 'video.mp4';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
